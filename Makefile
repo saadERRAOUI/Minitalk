@@ -16,6 +16,8 @@ $(SERVER) : $(SRV_OBJ)
 $(CLIENT) : $(CLT_OBJ)
 	cc $(CLT_OBJ) -o $(CLIENT)
 
+all : $(CLIENT) $(SERVER)
+
 clean:
 	rm -f $(CLT_OBJ) $(SRV_OBJ)
 
