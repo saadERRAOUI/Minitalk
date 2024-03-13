@@ -1,21 +1,30 @@
+#######################################################
+# SERVER                                              #
+#######################################################
 SERVER = server
-
-CLIENT = client
-
-CLT_SRC = client.c
-
-CLT_OBJ = $(CLT_SRC:.c=.o)
 
 SRV_SRC = server.c
 
 SRV_OBJ = $(SRV_SRC:.c=.o)
 
 $(SERVER) : $(SRV_OBJ)
-	cc $(SRV_OBJ) -o $(SERVER)
+	cc -fsanitize=address -g3 $(SRV_OBJ) -o $(SERVER)
+
+#######################################################
+# CLIENT                                              #
+#######################################################
+CLIENT = client
+
+CLT_SRC = client.c
+
+CLT_OBJ = $(CLT_SRC:.c=.o)
 
 $(CLIENT) : $(CLT_OBJ)
 	cc $(CLT_OBJ) -o $(CLIENT)
 
+#######################################################
+# OPS	                                              #
+#######################################################
 all : $(CLIENT) $(SERVER)
 
 clean:

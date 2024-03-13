@@ -6,27 +6,21 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:46:04 by serraoui          #+#    #+#             */
-/*   Updated: 2024/03/02 19:34:46 by serraoui         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:51:28 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <math.h>
 
 static int ft_pow(int pow, int num)
 {
-	int _num;
-
-	_num = num;
 	if (num == 0)
 		return (0);
 	if (pow == 0)
 		return (1);
 	else if (pow == 1)
 		return (num);
-	while (pow-- != 1)
-		num *= _num;
-	return (num);
+	return (num * ft_pow(pow - 1, num));
 }
 
 char decoder(int *sequence)
@@ -36,7 +30,7 @@ char decoder(int *sequence)
    int result = 0;
    while (i < 8)
    {
-		result += (sequence[i] * pow(2, n));
+		result += (sequence[i] * ft_pow(n, 2));
 		i++;
 		n--;
    }
@@ -76,7 +70,7 @@ void hdl_signals(int signal)
 int	main(int ac, char **av)
 {
 	int pid = getpid();
-	// int *ptr = {1, 0 ,};
+
 	printf("__GET_PID %i\n", pid);
 	
 	while (1)
