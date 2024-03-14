@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:46:02 by serraoui          #+#    #+#             */
-/*   Updated: 2024/03/14 22:27:17 by serraoui         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:51:50 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,18 @@ int	main(int ac, char **av)
 	if (ac == 3)
 	{
 		if (!ft_atoi_check(av[1], &pid) || pid < 0)
-			return (1);
+		{
+			ft_putstr_fd("PID NOT VALID !\n", 1);
+			return (ft_putstr_fd("Please recheck your PID param !\n", 1), 1);
+		}
 		while (av[2][i])
 		{
 			seg = encode_char(av[2][i]);
 			send_char(seg, pid);
 			i++;
 		}
+		return (0);
 	}
-	return (0);
+	ft_putstr_fd("INCORRECT NUMBER OF PARAMS !\n", 1);
+	return (ft_putstr_fd("Ensure that you enter the required infos !\n", 1), 1);
 }

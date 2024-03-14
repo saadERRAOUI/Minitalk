@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:46:04 by serraoui          #+#    #+#             */
-/*   Updated: 2024/03/14 22:25:51 by serraoui         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:51:21 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	hdl_signals(int signal)
 	}
 }
 
-int	main(int ac, char **av)
+int	main(void)
 {
 	int	pid;
 
