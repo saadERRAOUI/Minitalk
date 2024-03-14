@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:28:01 by serraoui          #+#    #+#             */
-/*   Updated: 2024/03/14 22:04:35 by serraoui         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:22:53 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 }
 
-void    ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
@@ -49,6 +49,11 @@ void    ft_putstr_fd(char *s, int fd)
 			i++;
 		}
 	}
+}
+
+int	ft_isdigit(int c)
+{
+	return (c <= '9' && c >= '0');
 }
 
 int	ft_atoi_check(const char *str, int *number)
