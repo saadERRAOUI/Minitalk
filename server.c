@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:46:04 by serraoui          #+#    #+#             */
-/*   Updated: 2024/03/13 14:51:28 by serraoui         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:35:38 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char decoder(int *sequence)
 
 void hdl_signals(int signal)
 {
-	// printf("SIGNALS %i\n\n", signal);
 	static int i;
     char c;
     static int sequence[8];
@@ -69,14 +68,19 @@ void hdl_signals(int signal)
 
 int	main(int ac, char **av)
 {
-	int pid = getpid();
+	int pid;
 
-	printf("__GET_PID %i\n", pid);
-	
+	pid = getpid();
+	ft_putstr_fd("SERVER_PROCESS_ID : ", 1);
+	ft_putnbr_fd(pid, 1);
+	ft_putstr_fd("\n[SERVER] Listening...\n", 1);
+	signal(SIGUSR1, hdl_signals);
+	signal(SIGUSR2, hdl_signals);	
 	while (1)
 	{
-		signal(SIGUSR1, hdl_signals);
-		signal(SIGUSR2, hdl_signals);
+		// signal(SIGUSR1, hdl_signals);
+		// signal(SIGUSR2, hdl_signals);
+		pause();
 	}
 	return (0);
 }

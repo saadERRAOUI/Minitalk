@@ -6,7 +6,7 @@
 /*   By: serraoui <serraoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:46:02 by serraoui          #+#    #+#             */
-/*   Updated: 2024/03/13 15:32:04 by serraoui         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:47:35 by serraoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,33 @@ int	ft_isdigit(int c)
 	return (c <= '9' && c >= '0');
 }
 
-int     ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-        long    number;
-        int             i;
-        int             is_negative;
+	long	number;
+	int		i;
+	int		is_negative;
 
-        number = 0;
-        i = 0;
-        is_negative = 1;
-        while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
-                i++;
-        if (str[i] == '-')
-        {
-                is_negative = -1;
-                i++;
-        }
-        else if (str[i] == '+')
-                i++;
-        while (str[i] && ft_isdigit(str[i]))
-        {
-                if (number < 0 && is_negative == -1)
-                        return (0);
-                else if (number < 0 && is_negative == 1)
-                        return (-1);
-                number = number * 10 + str[i++] - '0';
-        }
-        return (number * is_negative);
+	number = 0;
+	i = 0;
+	is_negative = 1;
+	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+		i++;
+	if (str[i] == '-')
+	{
+		is_negative = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		if (number < 0 && is_negative == -1)
+			return (0);
+		else if (number < 0 && is_negative == 1)
+			return (-1);
+		number = number * 10 + str[i++] - '0';
+	}
+	return (number * is_negative);
 }
 
 static int  *encode_char(int c)
@@ -75,7 +75,7 @@ static void send_char(int *c, int pid)
 			kill(pid, SIGUSR1);
 		else if (c[i] == 1)//SIGUSR2
 			kill(pid, SIGUSR2);
-		usleep(500);
+		usleep(2000);
 	}
 	free(c);
 }
@@ -83,14 +83,21 @@ static void send_char(int *c, int pid)
 int	main(int ac, char **av)
 {
 	int	i;
+	int	pid;
 	int *seg;
 
 	i = 0;
-	while (av[2][i])
+	if (ac == 3)
 	{
-		seg = encode_char(av[2][i]);
-		send_char(seg, ft_atoi(av[1]));
-		i++;
+		pid = ft_atoi(av[1]);
+		if (pid < 0)
+			return (1);
+		while (av[2][i])
+		{
+			seg = encode_char(av[2][i]);
+			send_char(seg, pid);
+			i++;
+		}
 	}
 	return (0);
 }

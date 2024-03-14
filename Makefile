@@ -3,7 +3,7 @@
 #######################################################
 SERVER = server
 
-SRV_SRC = server.c
+SRV_SRC = server.c minitalk_utils.c
 
 SRV_OBJ = $(SRV_SRC:.c=.o)
 
@@ -15,7 +15,7 @@ $(SERVER) : $(SRV_OBJ)
 #######################################################
 CLIENT = client
 
-CLT_SRC = client.c
+CLT_SRC = client.c minitalk_utils.c
 
 CLT_OBJ = $(CLT_SRC:.c=.o)
 
